@@ -34,7 +34,7 @@ const App = () => {
     ]);
     setChoices([...choices.slice(0, question), false]);
     if (question === questions.length - 1) handleSubmit();
-    setQuestion(question + 1);
+    else setQuestion(question + 1);
   };
 
   const handlePrev = () => {
