@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
+import Review from "./components/ReviewSection";
 import questions from "./questions";
 import "./styles.css";
 
@@ -125,10 +126,7 @@ const App = () => {
           )}
         </Col>
         <Col sm={4} className="reviewSection">
-          <h1>Review</h1>
-          {userAnswer.map((item, i) => {
-            return <p key={i}>{`${i + 1}. ${item}`}</p>;
-          })}
+          <Review answers={userAnswer} />
         </Col>
       </Row>
     </Container>
