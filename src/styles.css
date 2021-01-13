@@ -5,8 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color:orange;
-    text-shadow: 1px 1px 2px #000000;
+    background-color:orange;    
 }
 
 .quizSection p {
@@ -20,8 +19,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #00CCFF;
-    text-shadow: 1px 1px 2px #000000;
+    background-color: #00CCFF;    
 }
 
 .option {
@@ -43,12 +41,12 @@
 
 @media all and (max-width: 576px) {
     * {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
     .quizSection {
-        height: 70vh;
+        height: 60vh;
     }
     .reviewSection {
-        height: 30vh;
+        height: 40vh;
     }
 }
