@@ -94,6 +94,7 @@ const App = () => {
                   </Button>
                 ) : (
                   <Button
+                    variant="success"
                     disabled={!userAnswer[question]}
                     onClick={handleSubmit}
                     className="m-2"
@@ -122,6 +123,13 @@ const App = () => {
                   ) : null;
                 });
               })}
+              <Button
+                variant="success"
+                className="m-5"
+                onClick={() => window.location.reload()}
+              >
+                Reattempt Quiz
+              </Button>
             </>
           )}
         </Col>
