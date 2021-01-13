@@ -1,79 +1,48 @@
 import React, { useState } from "react";
-
-import Review from "./components/ReviewSection";
-
 import { Container, Row, Col, Button } from "react-bootstrap";
 
+import questions from "./questions";
+import "./styles.css";
+
 const App = () => {
-  const [chosen, setChosen] = useState(false);
+  const [userAnswer, setUserAnswer] = useState([]);
+  const [choices, setChoices] = useState([]);
   const [question, setQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
 
-  const handleClick = (val) => {
-    if (val) setChosen(val);
+  const compareAnswer = (opt) => {
+    setUserAnswer([
+      ...userAnswer.slice(0, question),
+      opt.answerText,
+      ...userAnswer.slice(question + 1),
+    ]);
+    setChoices([...choices.slice(0, question), opt.isCorrect]);
+  };
+
+  const calculateScore = (total = 0, value) => {
+    if (value) total++;
+    return total;
   };
 
   const handlePrev = () => {
-    if (chosen) setScore(score - 1);
-    setChosen(false);
+    setChoices([...choices.slice(0, question - 1)]);
     setQuestion(question - 1);
   };
 
   const handleNext = () => {
-    if (chosen) setScore(score + 1);
-    setChosen(false);
+    setChoices([...choices, choices[question]]);
     setQuestion(question + 1);
   };
 
   const handleSubmit = () => {
+    setScore(choices.reduce(calculateScore));
     setShowScore(true);
   };
 
-  const questions = [
-    {
-      questionText: "What is the capital of France?",
-      answerOptions: [
-        { answerText: "New York", isCorrect: false },
-        { answerText: "London", isCorrect: false },
-        { answerText: "Paris", isCorrect: true },
-        { answerText: "Dublin", isCorrect: false },
-      ],
-    },
-    {
-      questionText: "Who is CEO of Tesla?",
-      answerOptions: [
-        { answerText: "Jeff Bezos", isCorrect: false },
-        { answerText: "Elon Musk", isCorrect: true },
-        { answerText: "Bill Gates", isCorrect: false },
-        { answerText: "Tony Stark", isCorrect: false },
-      ],
-    },
-    {
-      questionText: "The iPhone was created by which company?",
-      answerOptions: [
-        { answerText: "Apple", isCorrect: true },
-        { answerText: "Intel", isCorrect: false },
-        { answerText: "Amazon", isCorrect: false },
-        { answerText: "Microsoft", isCorrect: false },
-      ],
-    },
-    {
-      questionText: "How many Harry Potter books are there?",
-      answerOptions: [
-        { answerText: "1", isCorrect: false },
-        { answerText: "4", isCorrect: false },
-        { answerText: "6", isCorrect: false },
-        { answerText: "7", isCorrect: true },
-      ],
-    },
-  ];
   return (
     <Container>
       <Row>
-        <Col sm={4}>
-          <Review />
-        </Col>
         <Col sm={8}>
           {!showScore ? (
             <>
@@ -83,13 +52,16 @@ const App = () => {
               {questions[question].answerOptions.map((option, key) => {
                 return (
                   <div className="m-2" style={{ textAlign: "center" }}>
-                    <Button
-                      variant="secondary"
-                      onClick={() => handleClick(option.isCorrect)}
-                      style={{ width: "50%" }}
+                    <div
+                      onClick={() => compareAnswer(option)}
+                      className={`option ${
+                        userAnswer[question] === option.answerText
+                          ? "selected"
+                          : null
+                      }`}
                     >
                       {option.answerText}
-                    </Button>
+                    </div>
                   </div>
                 );
               })}
@@ -115,6 +87,12 @@ const App = () => {
               Your final score : {score}/{questions.length}
             </h1>
           )}
+        </Col>
+        <p>{score}</p>
+        <Col>
+          {userAnswer.map((item) => {
+            return <p>{item}</p>;
+          })}
         </Col>
       </Row>
     </Container>
