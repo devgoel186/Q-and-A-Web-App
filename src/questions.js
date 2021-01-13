@@ -18,6 +18,18 @@ const questions = [
     ],
   },
   {
+    questionText: "Entomology is the science that studies",
+    answerOptions: [
+      { answerText: "Behavior of human beings", isCorrect: false },
+      { answerText: "Insects", isCorrect: true },
+      {
+        answerText: "The origin and history of technical and scientific terms",
+        isCorrect: false,
+      },
+      { answerText: "The formation of rocks", isCorrect: false },
+    ],
+  },
+  {
     questionText: "The iPhone was created by which company?",
     answerOptions: [
       { answerText: "Apple", isCorrect: true },
@@ -27,12 +39,12 @@ const questions = [
     ],
   },
   {
-    questionText: "How many Harry Potter books are there?",
+    questionText: "OS computer abbreviation usually means ?",
     answerOptions: [
-      { answerText: "1", isCorrect: false },
-      { answerText: "4", isCorrect: false },
-      { answerText: "6", isCorrect: false },
-      { answerText: "7", isCorrect: true },
+      { answerText: "Order of Significance", isCorrect: false },
+      { answerText: "Open Software", isCorrect: false },
+      { answerText: "Operating System", isCorrect: true },
+      { answerText: "Optical Sensor", isCorrect: false },
     ],
   },
 ];
