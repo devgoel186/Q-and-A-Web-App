@@ -38,13 +38,15 @@ const App = () => {
   };
 
   const handlePrev = () => {
-    setChoices([...choices.slice(0, question - 1)]);
     setQuestion(question - 1);
   };
 
   const handleNext = () => {
-    setChoices([...choices.slice(0, question), choices[question]]);
-    console.log(choices);
+    setChoices([
+      ...choices.slice(0, question),
+      choices[question],
+      ...choices.slice(question + 1),
+    ]);
     setQuestion(question + 1);
   };
 

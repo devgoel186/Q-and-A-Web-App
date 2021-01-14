@@ -41,7 +41,7 @@
 
 @media all and (max-width: 576px) {
     * {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
     .quizSection {
         height: 60vh;
